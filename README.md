@@ -1,4 +1,4 @@
-# Endless-Runner Template and Tutorial by NovemberDev
+# Multimedia Runner
  
  
  This is an endless runner project for the Computer Physics class.
