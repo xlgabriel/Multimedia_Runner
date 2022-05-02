@@ -32,7 +32,7 @@ func _process(delta):
 		shake_intensity -= delta
 		$ANCHOR/MESH/Camera.transform.origin = cam_position + 2.0 * shake_intensity * Vector3(cos(0.05 * OS.get_system_time_msecs()), sin(0.05 * OS.get_system_time_msecs()), 0.0)
 	
-	# do not process any further, if the player s dead
+	# do not process any further, if the player is dead
 	if dead: return
 	
 	# look towards the walking direction
@@ -58,6 +58,10 @@ func _process(delta):
 	if Input.is_action_just_pressed("r_jump") and $ANCHOR/MESH.transform.origin.y < 1:
 		vertical_force = 5
 	vertical_force = lerp(vertical_force, -3, 5.0 * delta)
+	
+	
+	#if Input.is_action_just_pressed("r_crouch"):
+
 	
 	if vertical_force > 0:
 		$ANCHOR/MESH/MODEL/AnimationTree.set("parameters/state/current", 2)
