@@ -53,7 +53,7 @@ margin_left = 831.0
 margin_top = 15.0
 margin_right = 1011.0
 margin_bottom = 32.0
-text = "2000 Distance"
+text = "2000 DISTANCIA"
 align = 2
 
 [node name="COINS" type="Label" parent="Control"]

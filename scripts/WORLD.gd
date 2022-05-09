@@ -47,9 +47,13 @@ func _ready():
 func _process(delta):
 	current_speed += delta * 0.4
 	distance += delta * current_speed * 0.1
-	$Control/COINS.text = "%s Coins" % [int(coins)]
-	$Control/DISTANCE.text = "%s Distance" % [int(distance)]
-	$Control/SPEED.text = "%s Speed" % [int(current_speed)]
+	$Control/COINS.text = "%s MONEDAS" % [int(coins)]
+	$Control/DISTANCE.text = "%s DISTANCIA" % [int(distance)]
+	$Control/SPEED.text = "%s VELOCIDAD" % [int(current_speed)]
+	
+	if Input.is_action_just_pressed("r_crouch"):
+		if not $Control/SPEEDBTN.disabled:
+			$Control/SPEEDBTN.emit_signal("pressed")
 	
 	# switch the theme based on time
 	theme_switch_time -= delta
@@ -65,6 +69,8 @@ func _process(delta):
 		total_speed = min(current_speed + 50.0, 200.0)
 	else:
 		total_speed = current_speed
+	
+	
 		
 	# reload the game if the player is dead for a time
 	if dead:
@@ -288,7 +294,7 @@ func on_collect(type):
 			magnet_time = 8.0
 		"coin":
 			coins += 1
-			$Control/COINLEVEL.value = min($Control/COINLEVEL.value + 4.0, 100.0)
+			$Control/COINLEVEL.value = min($Control/COINLEVEL.value + 2.0, 100.0)
 			if $Control/COINLEVEL.value == 100.0:
 				$Control/SPEEDBTN.disabled = false
 
@@ -310,6 +316,6 @@ func on_obstacle():
 		current_speed -= 10.0
 		
 func on_speed():
-	speed_time = 10.0
+	speed_time = 7.0
 	$Control/COINLEVEL.value = 0
 	$Control/SPEEDBTN.disabled = true

@@ -54,6 +54,7 @@ func _process(delta):
 		$ANCHOR/MESH/MODEL/AnimationTree.set("parameters/strafe/active", true)
 		switch_lane(1)
 		
+		
 	# jump and slowly lerp the player back towards the ground
 	if Input.is_action_just_pressed("r_jump") and $ANCHOR/MESH.transform.origin.y < 1:
 		vertical_force = 5
