@@ -20,7 +20,8 @@ _global_script_class_icons={
 
 [application]
 
-config/name="novemberdev_endlessrunner"
+config/name="MultimediaRunner"
+config/description="CF"
 run/main_scene="res://scenes/WORLD.tscn"
 config/icon="res://icon.png"
 

@@ -4908,7 +4908,7 @@ nodes/strafe/node = SubResource( 30 )
 nodes/strafe/position = Vector2( 440, 100 )
 nodes/strafe_state/node = SubResource( 31 )
 nodes/strafe_state/position = Vector2( 160, 400 )
-node_connections = [ "state", 0, "Animation", "state", 1, "Animation 2", "state", 2, "Animation 3", "state", 3, "Animation 4", "state", 4, "Animation 5", "output", 0, "dead", "magnet", 0, "strafe", "magnet", 1, "Animation 6", "dead", 0, "magnet", "dead", 1, "Animation 9", "strafe_state", 0, "Animation 7", "strafe_state", 1, "Animation 8", "strafe", 0, "state", "strafe", 1, "strafe_state" ]
+node_connections = [ "state", 0, "Animation", "state", 1, "Animation 2", "state", 2, "Animation 3", "state", 3, "Animation 4", "state", 4, "Animation 5", "output", 0, "dead", "magnet", 0, "strafe", "magnet", 1, "Animation 6", "dead", 0, "magnet", "dead", 1, "Animation 9", "strafe", 0, "state", "strafe", 1, "strafe_state", "strafe_state", 0, "Animation 7", "strafe_state", 1, "Animation 8" ]
 
 [sub_resource type="CapsuleShape" id=33]
 radius = 0.872118
@@ -5083,7 +5083,7 @@ bones/9/name = "hand_r"
 bones/9/parent = 8
 bones/9/rest = Transform( -0.0290934, 0.039956, 0.998778, 0.17279, 0.98436, -0.0343461, -0.984529, 0.171579, -0.0355424, -1.4843e-07, 0.287889, -1.62981e-09 )
 bones/9/enabled = true
-bones/9/bound_children = [ NodePath("MAGNET") ]
+bones/9/bound_children = [  ]
 bones/10/name = "f_index_1_r"
 bones/10/parent = 9
 bones/10/rest = Transform( 0.942408, 0.050263, 0.330666, -0.332181, 0.255996, 0.907812, -0.0390201, -0.96537, 0.257949, -0.0188358, 0.0882657, -0.00515772 )
@@ -5336,7 +5336,7 @@ skin = SubResource( 3 )
 material/0 = SubResource( 4 )
 
 [node name="MAGNET" type="BoneAttachment" parent="ANCHOR/MESH/MODEL/bee/rig/Skeleton"]
-transform = Transform( -0.869055, -0.415813, -0.268034, -0.211467, -0.177573, 0.961117, -0.447241, 0.891946, 0.0663893, -0.404105, 1.09053, 0.116173 )
+transform = Transform( -0.876982, -0.391982, -0.277942, -0.233348, -0.158235, 0.959431, -0.42006, 0.906263, 0.0473001, -0.390624, 1.0755, 0.116727 )
 visible = false
 bone_name = "hand_r"
 
