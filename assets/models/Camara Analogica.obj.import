@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Camara Analogica.obj-dca0ec741b51079ea93a4c65a6d05fbf.mesh"
+
+[deps]
+
+files=[ "res://.import/Camara Analogica.obj-dca0ec741b51079ea93a4c65a6d05fbf.mesh" ]
+
+source_file="res://assets/models/Camara Analogica.obj"
+dest_files=[ "res://.import/Camara Analogica.obj-dca0ec741b51079ea93a4c65a6d05fbf.mesh", "res://.import/Camara Analogica.obj-dca0ec741b51079ea93a4c65a6d05fbf.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

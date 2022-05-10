@@ -105,6 +105,8 @@ func on_collision(body):
 	if body.is_in_group("obstacle"):
 		shake_intensity = 0.5
 		Globals.emit_signal("on_obstacle")
+	if body.is_in_group("camera"):
+		Globals.emit_signal("on_collect", "camera")
 
 func on_die():
 	dead = true

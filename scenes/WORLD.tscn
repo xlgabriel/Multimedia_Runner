@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scripts/WORLD.gd" type="Script" id=1]
 [ext_resource path="res://scenes/PLAYER.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/obstacles/middle.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/COIN.tscn" type="PackedScene" id=4]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 0.866667, 0, 1 )
@@ -13,6 +15,8 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="Theme" id=3]
 
 [node name="WORLD" type="Spatial"]
 script = ExtResource( 1 )
@@ -69,8 +73,51 @@ margin_left = 831.0
 margin_top = 49.0
 margin_right = 1011.0
 margin_bottom = 66.0
+rect_pivot_offset = Vector2( 129.151, 17 )
 text = "2 VELOCIDAD"
 align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="COLLECTIBLES" type="Label" parent="Control"]
+margin_left = 415.061
+margin_top = 10.6611
+margin_right = 595.061
+margin_bottom = 27.6611
+rect_pivot_offset = Vector2( 129.151, 17 )
+theme = SubResource( 3 )
+custom_colors/font_color = Color( 0.933333, 0.792157, 0, 1 )
+text = "2 COLECCIONABLES"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OBJECT_LAYOUTS" type="Spatial" parent="."]
+
+[node name="CORRIDOR_0" type="Spatial" parent="OBJECT_LAYOUTS"]
+visible = false
+
+[node name="middle_0" parent="OBJECT_LAYOUTS/CORRIDOR_0" instance=ExtResource( 3 )]
+
+[node name="COIN_0" parent="OBJECT_LAYOUTS/CORRIDOR_0" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 37 )
+
+[node name="COIN_1" parent="OBJECT_LAYOUTS/CORRIDOR_0" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 29 )
+
+[node name="COIN_2" parent="OBJECT_LAYOUTS/CORRIDOR_0" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 21 )
+
+[node name="COIN_3" parent="OBJECT_LAYOUTS/CORRIDOR_0" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12 )
+
+[node name="COIN_4" parent="OBJECT_LAYOUTS/CORRIDOR_0" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14 )
+
+[node name="COIN_5" parent="OBJECT_LAYOUTS/CORRIDOR_0" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -24 )
+
+[node name="COIN_6" parent="OBJECT_LAYOUTS/CORRIDOR_0" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -33 )

@@ -6,6 +6,7 @@ extends Node
 var is_debug = true
 
 var scenes = {
+	"res://scenes/CAMERA.tscn": 13,
 	"res://scenes/COIN.tscn": 20,
 	"res://scenes/MAGNET.tscn": 13,
 	"res://scenes/obstacles/middle.tscn": 13,

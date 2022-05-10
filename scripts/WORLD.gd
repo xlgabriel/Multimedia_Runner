@@ -1,6 +1,7 @@
 extends Spatial
 
 var coins = 0
+var collectibles = 0
 var parts = {}
 var dead = false
 var distance = 0
@@ -50,6 +51,7 @@ func _process(delta):
 	$Control/COINS.text = "%s MONEDAS" % [int(coins)]
 	$Control/DISTANCE.text = "%s DISTANCIA" % [int(distance)]
 	$Control/SPEED.text = "%s VELOCIDAD" % [int(current_speed)]
+	$Control/COLLECTIBLES.text = "%s COLECCIONABLES" % [int(collectibles)]
 	
 	if Input.is_action_just_pressed("r_crouch"):
 		if not $Control/SPEEDBTN.disabled:
@@ -290,13 +292,16 @@ func preparte_obstacle_scenes():
 func on_collect(type):
 	match type:
 		"magnet":
-			Globals.emit_signal("on_toggle_magnet", true)
+			Globals.emit_signal("|_magnet", true)
 			magnet_time = 8.0
 		"coin":
 			coins += 1
 			$Control/COINLEVEL.value = min($Control/COINLEVEL.value + 2.0, 100.0)
 			if $Control/COINLEVEL.value == 100.0:
 				$Control/SPEEDBTN.disabled = false
+		"camera":
+			collectibles += 1
+			
 
 func on_coin_magnet_collision(body):
 	magnet_coins.push_back(body)
