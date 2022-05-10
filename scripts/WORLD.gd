@@ -49,6 +49,7 @@ func _process(delta):
 	current_speed += delta * 0.4
 	distance += delta * current_speed * 0.1
 <<<<<<< HEAD
+<<<<<<< HEAD
 	$Control/COINS.text = "%s MONEDAS" % [int(coins)]
 	$Control/DISTANCE.text = "%s DISTANCIA" % [int(distance)]
 	$Control/SPEED.text = "%s VELOCIDAD" % [int(current_speed)]
@@ -57,6 +58,11 @@ func _process(delta):
 	if Input.is_action_just_pressed("r_crouch"):
 		if not $Control/SPEEDBTN.disabled:
 			$Control/SPEEDBTN.emit_signal("pressed")
+=======
+	$Control/COINS.text = "%s Coins" % [int(coins)]
+	$Control/DISTANCE.text = "%s Distance" % [int(distance)]
+	$Control/SPEED.text = "%s Speed" % [int(current_speed)]
+>>>>>>> parent of 42765fd (More updates)
 =======
 	$Control/COINS.text = "%s Coins" % [int(coins)]
 	$Control/DISTANCE.text = "%s Distance" % [int(distance)]
