@@ -23,19 +23,39 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="VBoxContainer"]
+[node name="MuteButton" type="Button" parent="VBoxContainer"]
 margin_right = 185.0
 margin_bottom = 20.0
+focus_neighbour_top = NodePath("../VolverButton")
+text = "Quitar música"
 
-[node name="Button2" type="Button" parent="VBoxContainer"]
+[node name="HighVolumeButton" type="Button" parent="VBoxContainer"]
 margin_top = 24.0
 margin_right = 185.0
 margin_bottom = 44.0
+text = "Música normal"
 
-[node name="VolverButton" type="Button" parent="VBoxContainer"]
+[node name="LowVolumeButton" type="Button" parent="VBoxContainer"]
 margin_top = 48.0
 margin_right = 185.0
 margin_bottom = 68.0
+text = "Música baja"
+
+[node name="MuteSFXButton" type="Button" parent="VBoxContainer"]
+margin_top = 72.0
+margin_right = 185.0
+margin_bottom = 92.0
+text = "Quitar SFX"
+
+[node name="VolverButton" type="Button" parent="VBoxContainer"]
+margin_top = 96.0
+margin_right = 185.0
+margin_bottom = 116.0
+focus_neighbour_bottom = NodePath("../MuteButton")
 text = "Volver"
 
+[connection signal="pressed" from="VBoxContainer/MuteButton" to="." method="_on_MuteButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/HighVolumeButton" to="." method="_on_HighVolumeButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/LowVolumeButton" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MuteSFXButton" to="." method="_on_MuteSFXButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/VolverButton" to="." method="_on_VolverButton_pressed"]

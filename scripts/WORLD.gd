@@ -290,6 +290,7 @@ func preparte_obstacle_scenes():
 func on_collect(type):
 	match type:
 		"magnet":
+			$AudioMagnet.play()
 			Globals.emit_signal("on_toggle_magnet", true)
 			magnet_time = 8.0
 		"coin":
@@ -323,3 +324,4 @@ func on_speed():
 	speed_time = 7.0
 	$Control/COINLEVEL.value = 0
 	$Control/SPEEDBTN.disabled = true
+

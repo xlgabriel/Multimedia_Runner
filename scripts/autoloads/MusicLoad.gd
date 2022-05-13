@@ -14,3 +14,12 @@ func play_music():
 	
 	if $Music.playing == false:
 		$Music.play()
+
+func mute_volume():
+	$Music.volume_db = -40
+
+func high_volume():
+	$Music.volume_db = 0
+	
+func low_volume():
+	$Music.volume_db = -12
