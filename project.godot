@@ -22,14 +22,14 @@ _global_script_class_icons={
 
 config/name="MultimediaRunner"
 config/description="CF"
-run/main_scene="res://scenes/WORLD.tscn"
+run/main_scene="res://scenes/Menu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 Globals="*res://scripts/autoloads/Globals.gd"
 ObjectPooling="*res://addons/object_pooling/ObjectPooling.gd"
-SceneChanger="*res://scripts/SceneChanger.gd"
+MusicController="*res://scripts/autoloads/MusicController.tscn"
 
 [editor_plugins]
 

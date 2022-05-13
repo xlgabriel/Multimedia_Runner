@@ -78,7 +78,7 @@ func _process(delta):
 		if dead_timer < 0.0:
 			for part in $PARTS.get_children():
 				ObjectPooling.queue_free_instance(part)
-			get_tree().reload_current_scene()
+			get_tree().change_scene("res://scenes/Menu.tscn")
 		return
 		
 	# move collected coins towards the player
@@ -315,6 +315,7 @@ func on_obstacle():
 		$Control/SPEEDBTN.disabled = true
 		dead_timer = 2.0
 		dead = true
+
 	else:
 		current_speed -= 10.0
 		

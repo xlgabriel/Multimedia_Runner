@@ -1,0 +1,58 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scripts/autoloads/Menu.gd" type="Script" id=1]
+[ext_resource path="res://assets/audio/menumusic.wav" type="AudioStream" id=2]
+
+[node name="Menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -86.5
+margin_top = -34.0
+margin_right = 86.5
+margin_bottom = 34.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartButton" type="Button" parent="VBoxContainer"]
+margin_right = 173.0
+margin_bottom = 20.0
+focus_neighbour_top = NodePath("../QuitButton")
+text = "Jugar"
+
+[node name="OptionsButton" type="Button" parent="VBoxContainer"]
+margin_top = 24.0
+margin_right = 173.0
+margin_bottom = 44.0
+text = "Opciones"
+
+[node name="AyudaButton" type="Button" parent="VBoxContainer"]
+margin_top = 48.0
+margin_right = 173.0
+margin_bottom = 68.0
+text = "Ayuda"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+margin_top = 72.0
+margin_right = 173.0
+margin_bottom = 92.0
+focus_neighbour_bottom = NodePath("../StartButton")
+text = "Salir"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+
+[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_OptionsButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/AyudaButton" to="." method="_on_AyudaButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
