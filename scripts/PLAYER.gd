@@ -54,6 +54,7 @@ func _process(delta):
 		$ANCHOR/MESH/MODEL/AnimationTree.set("parameters/strafe/active", true)
 		switch_lane(1)
 		
+		
 	# jump and slowly lerp the player back towards the ground
 	if Input.is_action_just_pressed("r_jump") and $ANCHOR/MESH.transform.origin.y < 1:
 		vertical_force = 5
@@ -104,8 +105,6 @@ func on_collision(body):
 	if body.is_in_group("obstacle"):
 		shake_intensity = 0.5
 		Globals.emit_signal("on_obstacle")
-	if body.is_in_group("camera"):
-		Globals.emit_signal("on_collect", "camera")
 
 func on_die():
 	dead = true

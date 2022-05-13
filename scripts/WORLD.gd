@@ -1,7 +1,6 @@
 extends Spatial
 
 var coins = 0
-var collectibles = 0
 var parts = {}
 var dead = false
 var distance = 0
@@ -48,26 +47,13 @@ func _ready():
 func _process(delta):
 	current_speed += delta * 0.4
 	distance += delta * current_speed * 0.1
-<<<<<<< HEAD
-<<<<<<< HEAD
 	$Control/COINS.text = "%s MONEDAS" % [int(coins)]
 	$Control/DISTANCE.text = "%s DISTANCIA" % [int(distance)]
 	$Control/SPEED.text = "%s VELOCIDAD" % [int(current_speed)]
-	$Control/COLLECTIBLES.text = "%s COLECCIONABLES" % [int(collectibles)]
 	
 	if Input.is_action_just_pressed("r_crouch"):
 		if not $Control/SPEEDBTN.disabled:
 			$Control/SPEEDBTN.emit_signal("pressed")
-=======
-	$Control/COINS.text = "%s Coins" % [int(coins)]
-	$Control/DISTANCE.text = "%s Distance" % [int(distance)]
-	$Control/SPEED.text = "%s Speed" % [int(current_speed)]
->>>>>>> parent of 42765fd (More updates)
-=======
-	$Control/COINS.text = "%s Coins" % [int(coins)]
-	$Control/DISTANCE.text = "%s Distance" % [int(distance)]
-	$Control/SPEED.text = "%s Speed" % [int(current_speed)]
->>>>>>> parent of 42765fd (More updates)
 	
 	# switch the theme based on time
 	theme_switch_time -= delta
@@ -83,6 +69,8 @@ func _process(delta):
 		total_speed = min(current_speed + 50.0, 200.0)
 	else:
 		total_speed = current_speed
+	
+	
 		
 	# reload the game if the player is dead for a time
 	if dead:
@@ -302,16 +290,13 @@ func preparte_obstacle_scenes():
 func on_collect(type):
 	match type:
 		"magnet":
-			Globals.emit_signal("|_magnet", true)
+			Globals.emit_signal("on_toggle_magnet", true)
 			magnet_time = 8.0
 		"coin":
 			coins += 1
-			$Control/COINLEVEL.value = min($Control/COINLEVEL.value + 4.0, 100.0)
+			$Control/COINLEVEL.value = min($Control/COINLEVEL.value + 2.0, 100.0)
 			if $Control/COINLEVEL.value == 100.0:
 				$Control/SPEEDBTN.disabled = false
-		"camera":
-			collectibles += 1
-			
 
 func on_coin_magnet_collision(body):
 	magnet_coins.push_back(body)
@@ -331,6 +316,6 @@ func on_obstacle():
 		current_speed -= 10.0
 		
 func on_speed():
-	speed_time = 10.0
+	speed_time = 7.0
 	$Control/COINLEVEL.value = 0
 	$Control/SPEEDBTN.disabled = true
