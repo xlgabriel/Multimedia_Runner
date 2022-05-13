@@ -9,6 +9,7 @@ signal on_unload_part
 signal on_obstacle
 signal on_collect
 signal on_die
+signal on_win
 
 # smootly lerp between two rotations
 func slerp_look_at(t : Transform, dir, delta):

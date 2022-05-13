@@ -297,6 +297,9 @@ func on_collect(type):
 			$Control/COINLEVEL.value = min($Control/COINLEVEL.value + 2.0, 100.0)
 			if $Control/COINLEVEL.value == 100.0:
 				$Control/SPEEDBTN.disabled = false
+			
+			if coins == 1000:
+				get_tree().change_scene_to(load('res://scr/scenes/WIN.tscn'))
 
 func on_coin_magnet_collision(body):
 	magnet_coins.push_back(body)
