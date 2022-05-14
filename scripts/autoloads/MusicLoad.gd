@@ -23,3 +23,10 @@ func high_volume():
 	
 func low_volume():
 	$Music.volume_db = -12
+	
+func stop_music():
+	
+	$Music.stream = main_music
+	
+	if $Music.playing == false:
+		$Music.stop()

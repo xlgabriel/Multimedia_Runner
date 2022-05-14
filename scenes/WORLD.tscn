@@ -56,6 +56,9 @@ margin_right = 1011.0
 margin_bottom = 32.0
 text = "2000 DISTANCIA"
 align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="COINS" type="Label" parent="Control"]
 margin_left = 831.0

@@ -45,7 +45,7 @@ func _ready():
 		yield(get_tree(), "idle_frame")
 
 func _process(delta):
-	current_speed += delta * 0.4
+	current_speed += delta * 0.2 #También cambié su velocidad inicial
 	distance += delta * current_speed * 0.1
 	$Control/COINS.text = "%s MONEDAS" % [int(coins)]
 	$Control/DISTANCE.text = "%s DISTANCIA" % [int(distance)]
@@ -66,7 +66,7 @@ func _process(delta):
 	# activate super speed
 	if speed_time > 0.0:
 		speed_time -= delta 
-		total_speed = min(current_speed + 50.0, 200.0)
+		total_speed = min(current_speed + 10.0, 200.0) #Le bajé la velocidad cuando se usa el multiplicador, está mejor así
 	else:
 		total_speed = current_speed
 	
@@ -75,10 +75,11 @@ func _process(delta):
 	# reload the game if the player is dead for a time
 	if dead:
 		dead_timer -= delta
-		if dead_timer < 0.0:
+		if dead_timer < 0.2:
 			for part in $PARTS.get_children():
 				ObjectPooling.queue_free_instance(part)
-			get_tree().change_scene("res://scenes/Menu.tscn")
+				MusicController.stop_music() #parar música
+			get_tree().change_scene("res://scenes/LOSE.tscn")
 		return
 		
 	# move collected coins towards the player
@@ -298,9 +299,12 @@ func on_collect(type):
 			$Control/COINLEVEL.value = min($Control/COINLEVEL.value + 2.0, 100.0)
 			if $Control/COINLEVEL.value == 100.0:
 				$Control/SPEEDBTN.disabled = false
-			
-			if coins == 1000:
-				get_tree().change_scene_to(load('res://scr/scenes/WIN.tscn'))
+				
+			if coins == 100: #Cambié la condición de win a menos monedas y le añadí la escena de win
+				MusicController.stop_music() #parar música
+				#get_tree().change_scene_to(load("res://scr/scenes/WIN.tscn"))
+				get_tree().change_scene("res://scenes/WIN.tscn")  #Se hace con este código, el otro no funcionaba
+				#IMPORTANTE, HAY UN BUG AQUÍ, NO DEJA UNDIR DE NUEVO A JUGAR, CUANDO SE VA AL MENÚ LUEGO DE GANAR
 
 func on_coin_magnet_collision(body):
 	magnet_coins.push_back(body)
@@ -309,7 +313,7 @@ func on_coin_magnet_collision(body):
 func on_obstacle():
 	if dead:
 		return
-	if speed_time > 0.0:
+	if speed_time > 10.0: #Funciona mejor con esta velocidad, si se coloca como 0, no colisiona cuando hace el potenciador de velocidad
 		return
 	if current_speed < 50:
 		Globals.emit_signal("on_die")
@@ -321,7 +325,7 @@ func on_obstacle():
 		current_speed -= 10.0
 		
 func on_speed():
-	speed_time = 7.0
+	speed_time = 7.0  #Cuidado con aumentar mucho la velocidad del personaje, o se volvera casi que invulnerable porque la condición de arriba es que se muera si tiene 10 de velocidad
 	$Control/COINLEVEL.value = 0
 	$Control/SPEEDBTN.disabled = true
 

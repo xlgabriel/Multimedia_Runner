@@ -29,7 +29,7 @@ config/icon="res://icon.png"
 
 Globals="*res://scripts/autoloads/Globals.gd"
 ObjectPooling="*res://addons/object_pooling/ObjectPooling.gd"
-MusicController="*res://scripts/autoloads/MusicController.tscn"
+MusicController="*res://MusicController.tscn"
 
 [editor_plugins]
 
