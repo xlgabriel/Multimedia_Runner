@@ -4908,7 +4908,7 @@ nodes/strafe/node = SubResource( 30 )
 nodes/strafe/position = Vector2( 440, 100 )
 nodes/strafe_state/node = SubResource( 31 )
 nodes/strafe_state/position = Vector2( 160, 400 )
-node_connections = [ "state", 0, "Animation", "state", 1, "Animation 2", "state", 2, "Animation 3", "state", 3, "Animation 4", "state", 4, "Animation 5", "output", 0, "dead", "magnet", 0, "strafe", "magnet", 1, "Animation 6", "dead", 0, "magnet", "dead", 1, "Animation 9", "strafe", 0, "state", "strafe", 1, "strafe_state", "strafe_state", 0, "Animation 7", "strafe_state", 1, "Animation 8" ]
+node_connections = [ "state", 0, "Animation", "state", 1, "Animation 2", "state", 2, "Animation 3", "state", 3, "Animation 4", "state", 4, "Animation 5", "output", 0, "dead", "magnet", 0, "strafe", "magnet", 1, "Animation 6", "strafe", 0, "state", "strafe", 1, "strafe_state", "strafe_state", 0, "Animation 7", "strafe_state", 1, "Animation 8", "dead", 0, "magnet", "dead", 1, "Animation 9" ]
 
 [sub_resource type="CapsuleShape" id=33]
 radius = 0.872118
@@ -5336,7 +5336,7 @@ skin = SubResource( 3 )
 material/0 = SubResource( 4 )
 
 [node name="MAGNET" type="BoneAttachment" parent="ANCHOR/MESH/MODEL/bee/rig/Skeleton"]
-transform = Transform( -0.876982, -0.391982, -0.277942, -0.233348, -0.158235, 0.959431, -0.42006, 0.906263, 0.0473001, -0.390624, 1.0755, 0.116727 )
+transform = Transform( -0.877904, -0.395635, -0.269733, -0.224807, -0.156824, 0.961699, -0.422783, 0.90492, 0.0487342, -0.393334, 1.07869, 0.116726 )
 visible = false
 bone_name = "hand_r"
 
