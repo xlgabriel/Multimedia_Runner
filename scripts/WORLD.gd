@@ -20,9 +20,10 @@ var right_turn_counter = 0
 var spawn_part_counter = 0
 var current_theme_index = 0
 var theme_switch_time = 45.0
-var part_lane_coordinates = []
+var part_lane_coordinates = [] 
 var current_direction = -Vector3.FORWARD
-
+var ScenePause: String = "res://menupausa.tscn" #Creamos la variable scenepause con la ruta de la escena del menú de pausa
+var paused: Object = null #Creamos una variable paused de tipo objeto que sea null
 # This script controls the entire game state.
 # It spawns and moves the parts around the player
 # given the pre-recorded and current lane-points
@@ -329,3 +330,9 @@ func on_speed():
 	$Control/COINLEVEL.value = 0
 	$Control/SPEEDBTN.disabled = true
 
+
+
+
+	#if paused == null:
+		#paused = load(ScenePause).instance()
+		#$screem.add_child(paused)

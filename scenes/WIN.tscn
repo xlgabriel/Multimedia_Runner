@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://repo_images/fondo-blanco-gris-brillante-lineas-onduladas_1017-25101.jpg" type="Texture" id=1]
-[ext_resource path="res://scenes/Button.gd" type="Script" id=2]
+[ext_resource path="res://scripts/Button.gd" type="Script" id=2]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://fonts/full Pack 2025.ttf"
