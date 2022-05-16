@@ -12,6 +12,7 @@ var mostrar = ""
 func _ready():
 	load_scores()
 	#mostrar_puntaje()
+	
 	get_node("Scores").set_text(str(scores))
 	pass # Replace with function body.
 
@@ -32,8 +33,7 @@ func load_scores():
 func mostrar_puntaje():
 	var ver = ""
 	for i in scores:
-		ver = ver + "/n" + "Puntaje: " + str(scores[i])
-		i = i + 4
+		ver = ver + "Puntaje: " + str(scores[i])
 	get_node("Scores").set_text(ver)
 
 

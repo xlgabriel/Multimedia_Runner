@@ -358,9 +358,9 @@ func on_obstacle():
 		return
 	if speed_time > 10.0: #Funciona mejor con esta velocidad, si se coloca como 0, no colisiona cuando hace el potenciador de velocidad
 		return
-	if lista_vidas.size() <=1:
+	#if lista_vidas.size() <=1:
 		
-	#if current_speed < 50:
+	if current_speed < 50:
 		Globals.emit_signal("on_die")
 		$Control/SPEEDBTN.disabled = true
 		dead_timer = 2.0
