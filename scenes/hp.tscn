@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://heart.png" type="Texture" id=1]
+
+[node name="LIFE1" type="Sprite" groups=[
+"vida",
+]]
+position = Vector2( 692.286, 37.1785 )
+scale = Vector2( 0.106795, 0.106795 )
+texture = ExtResource( 1 )

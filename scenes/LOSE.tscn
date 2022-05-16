@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://repo_images/black-background-leather-wallpaper-preview.jpg" type="Texture" id=1]
 [ext_resource path="res://scripts/LOSEINTENTANUEVO.gd" type="Script" id=2]
 [ext_resource path="res://scripts/vuelvealmenulose.gd" type="Script" id=3]
+[ext_resource path="res://scenes/LOSE.gd" type="Script" id=4]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://fonts/full Pack 2025.ttf"
@@ -15,6 +16,7 @@ font_data = SubResource( 1 )
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -69,5 +71,20 @@ margin_bottom = 54.0
 text = "VUELVE AL MENÚ"
 script = ExtResource( 3 )
 
+[node name="Puntajes" type="Button" parent="Label/VBoxContainer"]
+margin_top = 68.0
+margin_right = 225.0
+margin_bottom = 88.0
+text = "PUNTAJES"
+
+[node name="PuntajeFinal" type="Label" parent="."]
+margin_left = 410.74
+margin_top = 301.643
+margin_right = 601.74
+margin_bottom = 362.643
+align = 1
+valign = 1
+
 [connection signal="pressed" from="Label/VBoxContainer/Button" to="Label/VBoxContainer/Button" method="_on_Button_pressed"]
 [connection signal="pressed" from="Label/VBoxContainer/Button2" to="Label/VBoxContainer/Button2" method="_on_Button2_pressed"]
+[connection signal="pressed" from="Label/VBoxContainer/Puntajes" to="." method="_on_Puntajes_pressed"]

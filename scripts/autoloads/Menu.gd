@@ -21,3 +21,7 @@ func _on_AyudaButton_pressed():
 
 func _on_QuitButton_pressed():
 	get_tree().quit()
+
+
+func _on_Scores_pressed():
+	get_tree().change_scene("res://scenes/Puntajes.tscn")

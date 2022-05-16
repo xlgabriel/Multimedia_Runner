@@ -22,6 +22,12 @@ var current_theme_index = 0
 var theme_switch_time = 45.0
 var part_lane_coordinates = []
 var current_direction = -Vector3.FORWARD
+var scores = [] setget set_scores
+const filepath = "user://scores"
+var vidas = 3
+export (PackedScene) var spr_vidas
+var offset_vidas = 70
+var lista_vidas = []
 
 # This script controls the entire game state.
 # It spawns and moves the parts around the player
@@ -37,12 +43,40 @@ func _ready():
 	$Control/SPEEDBTN.connect("pressed", self, "on_speed")
 	Globals.connect("on_unload_part", self, "on_unload_part")
 	Globals.connect("on_coin_magnet_collision", self, "on_coin_magnet_collision")
+	load_scores()
+	crear_vidas()
 	
 	# spawn a few parts in the beginning
 	# the index makes sure no obstacles are spawned
 	for i in 5:
 		spawn_next_part(i)
 		yield(get_tree(), "idle_frame")
+
+func crear_vidas():
+	for i in vidas:
+		var newVida = spr_vidas.instance()
+		get_tree().get_nodes_in_group("gui")[0].add_child(newVida)
+		newVida.global_position.x += offset_vidas * i
+		lista_vidas.append(newVida)
+	pass
+	
+func quitar_vida():
+	if lista_vidas.empty():
+		pass
+	else:
+		vidas -= 1
+		lista_vidas[vidas].queue_free()
+	
+	
+
+func agregar_vida():
+	vidas -= 1
+	var newVida = spr_vidas.instance()
+	get_tree().get_nodes_in_group("gui")[0].add_child(newVida)
+	newVida.global_position.x += offset_vidas * (vidas - 1)
+	lista_vidas[vidas-1].append(newVida)
+	pass
+
 
 func _process(delta):
 	current_speed += delta * 0.2 #También cambié su velocidad inicial
@@ -74,11 +108,17 @@ func _process(delta):
 		
 	# reload the game if the player is dead for a time
 	if dead:
+		
 		dead_timer -= delta
+		
+			
 		if dead_timer < 0.2:
+			scores.append(coins)
+			save_scores()
 			for part in $PARTS.get_children():
 				ObjectPooling.queue_free_instance(part)
 				MusicController.stop_music() #parar música
+				
 			get_tree().change_scene("res://scenes/LOSE.tscn")
 		return
 		
@@ -302,6 +342,8 @@ func on_collect(type):
 				
 			if coins == 100: #Cambié la condición de win a menos monedas y le añadí la escena de win
 				MusicController.stop_music() #parar música
+				scores.append(coins)
+				save_scores()
 				#get_tree().change_scene_to(load("res://scr/scenes/WIN.tscn"))
 				get_tree().change_scene("res://scenes/WIN.tscn")  #Se hace con este código, el otro no funcionaba
 				#IMPORTANTE, HAY UN BUG AQUÍ, NO DEJA UNDIR DE NUEVO A JUGAR, CUANDO SE VA AL MENÚ LUEGO DE GANAR
@@ -311,16 +353,19 @@ func on_coin_magnet_collision(body):
 
 # control what happens when you collide with an obstacle
 func on_obstacle():
+	quitar_vida()
 	if dead:
 		return
 	if speed_time > 10.0: #Funciona mejor con esta velocidad, si se coloca como 0, no colisiona cuando hace el potenciador de velocidad
 		return
-	if current_speed < 50:
+	if lista_vidas.size() <=1:
+		
+	#if current_speed < 50:
 		Globals.emit_signal("on_die")
 		$Control/SPEEDBTN.disabled = true
 		dead_timer = 2.0
 		dead = true
-
+		
 	else:
 		current_speed -= 10.0
 		
@@ -328,4 +373,25 @@ func on_speed():
 	speed_time = 7.0  #Cuidado con aumentar mucho la velocidad del personaje, o se volvera casi que invulnerable porque la condición de arriba es que se muera si tiene 10 de velocidad
 	$Control/COINLEVEL.value = 0
 	$Control/SPEEDBTN.disabled = true
+	
+
+func load_scores():
+	var file = File.new()
+	if not file.file_exists(filepath): return
+	file.open(filepath, File.READ)
+	scores = file.get_var()
+	file.close()
+	pass
+
+func save_scores():
+	var file = File.new()
+	file.open(filepath, File.WRITE)
+	file.store_var(scores)
+	file.close()
+	pass 
+
+func set_scores(new_value):
+	scores = new_value
+	save_scores()
+	pass
 
