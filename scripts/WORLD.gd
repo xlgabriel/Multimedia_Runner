@@ -1,5 +1,10 @@
 extends Spatial
-
+var computers = 0
+var microphones = 0
+var cameras = 0
+var headphones = 0
+var clapperboards = 0
+var controllers = 0
 var coins = 0
 var parts = {}
 var dead = false
@@ -20,15 +25,10 @@ var right_turn_counter = 0
 var spawn_part_counter = 0
 var current_theme_index = 0
 var theme_switch_time = 45.0
-var part_lane_coordinates = []
+var part_lane_coordinates = [] 
 var current_direction = -Vector3.FORWARD
-var scores = [] setget set_scores
-const filepath = "user://scores"
-var vidas = 3
-export (PackedScene) var spr_vidas
-var offset_vidas = 70
-var lista_vidas = []
-
+var ScenePause: String = "res://menupausa.tscn" #Creamos la variable scenepause con la ruta de la escena del menú de pausa
+var paused: Object = null #Creamos una variable paused de tipo objeto que sea null
 # This script controls the entire game state.
 # It spawns and moves the parts around the player
 # given the pre-recorded and current lane-points
@@ -43,8 +43,6 @@ func _ready():
 	$Control/SPEEDBTN.connect("pressed", self, "on_speed")
 	Globals.connect("on_unload_part", self, "on_unload_part")
 	Globals.connect("on_coin_magnet_collision", self, "on_coin_magnet_collision")
-	load_scores()
-	crear_vidas()
 	
 	# spawn a few parts in the beginning
 	# the index makes sure no obstacles are spawned
@@ -52,36 +50,15 @@ func _ready():
 		spawn_next_part(i)
 		yield(get_tree(), "idle_frame")
 
-func crear_vidas():
-	for i in vidas:
-		var newVida = spr_vidas.instance()
-		get_tree().get_nodes_in_group("gui")[0].add_child(newVida)
-		newVida.global_position.x += offset_vidas * i
-		lista_vidas.append(newVida)
-	pass
-	
-func quitar_vida():
-	if lista_vidas.empty():
-		pass
-	else:
-		vidas -= 1
-		lista_vidas[vidas].queue_free()
-	
-	
-
-func agregar_vida():
-	vidas -= 1
-	var newVida = spr_vidas.instance()
-	get_tree().get_nodes_in_group("gui")[0].add_child(newVida)
-	newVida.global_position.x += offset_vidas * (vidas - 1)
-	lista_vidas[vidas-1].append(newVida)
-	pass
-
-
 func _process(delta):
 	current_speed += delta * 0.2 #También cambié su velocidad inicial
 	distance += delta * current_speed * 0.1
 	$Control/COINS.text = "%s MONEDAS" % [int(coins)]
+	$Control/HEADPHONES.text = "%s AUDIFONOS" % [int(headphones)]
+	$Control/CLAPPERBOARDS.text = "%s CLAQUETAS" % [int(clapperboards)]
+	$Control/MICROPHONES.text = "%s MICROFONOS" % [int(microphones)]
+	$Control/COMPUTERS.text = "%s COMPUTADORES" % [int(computers)]
+	$Control/CONTROLLERS.text = "%s CONTROLES" % [int(controllers)]
 	$Control/DISTANCE.text = "%s DISTANCIA" % [int(distance)]
 	$Control/SPEED.text = "%s VELOCIDAD" % [int(current_speed)]
 	
@@ -108,17 +85,11 @@ func _process(delta):
 		
 	# reload the game if the player is dead for a time
 	if dead:
-		
 		dead_timer -= delta
-		
-			
 		if dead_timer < 0.2:
-			scores.append(coins)
-			save_scores()
 			for part in $PARTS.get_children():
 				ObjectPooling.queue_free_instance(part)
 				MusicController.stop_music() #parar música
-				
 			get_tree().change_scene("res://scenes/LOSE.tscn")
 		return
 		
@@ -259,6 +230,18 @@ func initialize_part(part, part_instance, index):
 			randomize()
 			var object_instance = null
 			# override behaviour for some pickups and obstacles
+			if obstacle.name.begins_with("CAMERA"):
+				object_instance = ObjectPooling.load_from_pool("res://scenes/CAMERA.tscn")
+			if obstacle.name.begins_with("HEADPHONES"):
+				object_instance = ObjectPooling.load_from_pool("res://scenes/HEADPHONES.tscn")
+			if obstacle.name.begins_with("MICROPHONE"):
+				object_instance = ObjectPooling.load_from_pool("res://scenes/MICROPHONE.tscn")
+			if obstacle.name.begins_with("CLAPPERBOARD"):
+				object_instance = ObjectPooling.load_from_pool("res://scenes/CLAPPERBOARD.tscn")
+			if obstacle.name.begins_with("CONTROLLER"):
+				object_instance = ObjectPooling.load_from_pool("res://scenes/COMPUTER.tscn")
+			if obstacle.name.begins_with("COMPUTER"):
+				object_instance = ObjectPooling.load_from_pool("res://scenes/CONTROLLER.tscn")
 			if obstacle.name.begins_with("COIN"):
 				object_instance = ObjectPooling.load_from_pool("res://scenes/COIN.tscn")
 			elif pickups.find(obstacle.name.split('_')[0]) != -1:
@@ -271,6 +254,7 @@ func initialize_part(part, part_instance, index):
 			object_instance.transform.origin = Vector3(obstacle.x, obstacle.y, obstacle.z)
 			object_instance.rotation = Vector3(obstacle.rx, obstacle.ry, obstacle.rz)
 			object_instance.visible = true
+			
 			
 func prepare_parts():
 	# this method gets all scenes inside res://scenes/parts
@@ -334,38 +318,88 @@ func on_collect(type):
 			$AudioMagnet.play()
 			Globals.emit_signal("on_toggle_magnet", true)
 			magnet_time = 8.0
+		"camera":
+			if cameras >=3:
+				cameras += 0
+				$ProgressBar.value +=0
+				$ProgressBar/TextureProgress.value +=0
+			else:
+				cameras += 1
+				$ProgressBar.value +=1
+				$ProgressBar/TextureProgress.value +=1
+		"headphone":
+			if headphones >=3:
+				headphones += 0
+				$ProgressBar.value +=0
+				$ProgressBar/TextureProgress.value +=0
+			else:
+				headphones += 1
+				$ProgressBar.value +=1
+				$ProgressBar/TextureProgress.value +=1
+		"microphone":
+			if microphones >=3:
+				microphones += 0
+				$ProgressBar.value +=0
+				$ProgressBar/TextureProgress.value +=0
+			else:
+				microphones += 1
+				$ProgressBar.value +=1
+				$ProgressBar/TextureProgress.value +=1
+		"controller":
+			if controllers >=3:
+				controllers += 0
+				$ProgressBar.value +=0
+				$ProgressBar/TextureProgress.value +=0
+			else:
+				controllers += 1
+				$ProgressBar.value +=1
+				$ProgressBar/TextureProgress.value +=1
+		"computer":
+			if computers >=3:
+				computers += 0
+				$ProgressBar.value +=0
+				$ProgressBar/TextureProgress.value +=0
+			else:
+				computers += 1
+				$ProgressBar.value +=1
+				$ProgressBar/TextureProgress.value +=1
+		"clapperboard":
+			if clapperboards >=3:
+				clapperboards += 0
+				$ProgressBar.value +=0
+				$ProgressBar/TextureProgress.value +=0
+			else:
+				clapperboards += 1
+				$ProgressBar.value +=1
+				$ProgressBar/TextureProgress.value +=1
+			
+
 		"coin":
 			coins += 1
 			$Control/COINLEVEL.value = min($Control/COINLEVEL.value + 2.0, 100.0)
 			if $Control/COINLEVEL.value == 100.0:
 				$Control/SPEEDBTN.disabled = false
 				
-			if coins == 100: #Cambié la condición de win a menos monedas y le añadí la escena de win
+			if computers && microphones && cameras && clapperboards && controllers && headphones == 3: #Cambié la condición de win a menos monedas y le añadí la escena de win
 				MusicController.stop_music() #parar música
-				scores.append(coins)
-				save_scores()
 				#get_tree().change_scene_to(load("res://scr/scenes/WIN.tscn"))
 				get_tree().change_scene("res://scenes/WIN.tscn")  #Se hace con este código, el otro no funcionaba
 				#IMPORTANTE, HAY UN BUG AQUÍ, NO DEJA UNDIR DE NUEVO A JUGAR, CUANDO SE VA AL MENÚ LUEGO DE GANAR
-
 func on_coin_magnet_collision(body):
 	magnet_coins.push_back(body)
 
 # control what happens when you collide with an obstacle
 func on_obstacle():
-	quitar_vida()
 	if dead:
 		return
 	if speed_time > 10.0: #Funciona mejor con esta velocidad, si se coloca como 0, no colisiona cuando hace el potenciador de velocidad
 		return
-	#if lista_vidas.size() <=1:
-		
 	if current_speed < 50:
 		Globals.emit_signal("on_die")
 		$Control/SPEEDBTN.disabled = true
 		dead_timer = 2.0
 		dead = true
-		
+
 	else:
 		current_speed -= 10.0
 		
@@ -373,25 +407,9 @@ func on_speed():
 	speed_time = 7.0  #Cuidado con aumentar mucho la velocidad del personaje, o se volvera casi que invulnerable porque la condición de arriba es que se muera si tiene 10 de velocidad
 	$Control/COINLEVEL.value = 0
 	$Control/SPEEDBTN.disabled = true
-	
 
-func load_scores():
-	var file = File.new()
-	if not file.file_exists(filepath): return
-	file.open(filepath, File.READ)
-	scores = file.get_var()
-	file.close()
-	pass
 
-func save_scores():
-	var file = File.new()
-	file.open(filepath, File.WRITE)
-	file.store_var(scores)
-	file.close()
-	pass 
-
-func set_scores(new_value):
-	scores = new_value
-	save_scores()
-	pass
+	#if paused == null:
+		#paused = load(ScenePause).instance()
+		#$screem.add_child(paused)
 

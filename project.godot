@@ -28,8 +28,9 @@ config/icon="res://icon.png"
 [autoload]
 
 Globals="*res://scripts/autoloads/Globals.gd"
+MusicController="*res://scenes/MusicController.tscn"
+Menupausa="*res://scenes/menupausa.tscn"
 ObjectPooling="*res://addons/object_pooling/ObjectPooling.gd"
-MusicController="*res://MusicController.tscn"
 
 [editor_plugins]
 

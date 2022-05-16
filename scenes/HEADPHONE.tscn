@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/models/magnet.material" type="Material" id=1]
+[ext_resource path="res://assets/models/Entity1.material" type="Material" id=2]
+[ext_resource path="res://assets/models/Entity2.material" type="Material" id=3]
+[ext_resource path="res://assets/models/laser.material" type="Material" id=4]
+[ext_resource path="res://assets/models/Audifonos.obj" type="ArrayMesh" id=5]
+
+[sub_resource type="BoxShape" id=1]
+
+[node name="HEADPHONE_0" type="StaticBody" groups=[
+"headphone",
+]]
+transform = Transform( 0.147945, 0, 0, 0, 0.147945, 0, 0, 0, 0.147945, 0, 0, 0 )
+
+[node name="headphone" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.409927, 3.22583, 0.31398 )
+mesh = ExtResource( 5 )
+material/0 = ExtResource( 2 )
+material/1 = null
+material/2 = null
+material/3 = null
+material/4 = ExtResource( 2 )
+material/5 = ExtResource( 4 )
+material/6 = ExtResource( 3 )
+material/7 = ExtResource( 1 )
+material/8 = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 38.072, 0, 0, 0, 45.6466, 0, 0, 0, 27.2673, -0.409927, 48.1909, 0.31398 )
+shape = SubResource( 1 )

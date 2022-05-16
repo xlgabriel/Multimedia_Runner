@@ -1,9 +1,14 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scripts/WORLD.gd" type="Script" id=1]
 [ext_resource path="res://scenes/PLAYER.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/audio/magnetsound.wav" type="AudioStream" id=3]
-[ext_resource path="res://scenes/hp.tscn" type="PackedScene" id=4]
+[ext_resource path="res://repo_images/pausa dos.png" type="Texture" id=4]
+[ext_resource path="res://repo_images/pausa (1).png" type="Texture" id=5]
+[ext_resource path="res://repo_images/barra 3.png" type="Texture" id=6]
+[ext_resource path="res://scenes/Control.gd" type="Script" id=7]
+[ext_resource path="res://repo_images/barra 2.png" type="Texture" id=8]
+[ext_resource path="res://repo_images/Barra 1.png" type="Texture" id=9]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 0.866667, 0, 1 )
@@ -18,17 +23,30 @@ border_color = Color( 1, 1, 1, 1 )
 
 [node name="WORLD" type="Spatial"]
 script = ExtResource( 1 )
-spr_vidas = ExtResource( 4 )
 
 [node name="PARTS" type="Spatial" parent="."]
 
 [node name="PLAYER" parent="." instance=ExtResource( 2 )]
 
-[node name="Control" type="Control" parent="." groups=[
-"gui",
-]]
-anchor_right = 1.0
+[node name="AudioMagnet" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+
+[node name="Control" type="Control" parent="."]
+anchor_left = 0.000731587
+anchor_right = 1.00073
 anchor_bottom = 1.0
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="COMPUTERS" type="Label" parent="Control"]
+margin_left = 893.823
+margin_top = 101.73
+margin_right = 1013.82
+margin_bottom = 120.73
+rect_pivot_offset = Vector2( 75.2965, 9.5 )
+text = "2 COMPUTADORES"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -83,11 +101,101 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SCORES" type="Label" parent="Control"]
-margin_left = 933.0
-margin_top = 80.0
-margin_right = 1010.0
-margin_bottom = 453.0
+[node name="CAMERAS" type="Label" parent="Control"]
+margin_left = 935.703
+margin_top = 67.1721
+margin_right = 1022.7
+margin_bottom = 86.1721
+rect_pivot_offset = Vector2( 75.2965, 9.5 )
+text = "2 CAMARAS"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="AudioMagnet" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 3 )
+[node name="CONTROLLERS" type="Label" parent="Control"]
+margin_left = 923.373
+margin_top = 84.0992
+margin_right = 1026.37
+margin_bottom = 103.099
+rect_pivot_offset = Vector2( 75.2965, 9.5 )
+text = "2 CONTROLES"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="pause" type="TextureButton" parent="Control"]
+pause_mode = 2
+margin_left = 78.0
+margin_top = 8.0
+margin_right = 140.0
+margin_bottom = 68.0
+texture_normal = ExtResource( 5 )
+texture_hover = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MICROPHONES" type="Label" parent="Control"]
+margin_left = 910.987
+margin_top = 120.835
+margin_right = 1013.99
+margin_bottom = 139.835
+rect_pivot_offset = Vector2( 75.2965, 9.5 )
+text = "2 MICROFONOS"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CLAPPERBOARDS" type="Label" parent="Control"]
+margin_left = 925.707
+margin_top = 139.0
+margin_right = 1016.71
+margin_bottom = 158.0
+rect_pivot_offset = Vector2( 75.2965, 9.5 )
+text = "2 CLAQUETAS"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HEADPHONES" type="Label" parent="Control"]
+margin_left = 920.191
+margin_top = 156.843
+margin_right = 1040.19
+margin_bottom = 175.843
+rect_pivot_offset = Vector2( 75.2965, 9.5 )
+text = "2 AUDIFONOS"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+margin_left = 330.376
+margin_top = 534.189
+margin_right = 708.376
+margin_bottom = 560.189
+max_value = 18.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureProgress" type="TextureProgress" parent="ProgressBar"]
+margin_left = -20.2296
+margin_top = -7.10391
+margin_right = 2679.77
+margin_bottom = 592.896
+rect_scale = Vector2( 0.151584, 0.0664081 )
+max_value = 18.0
+texture_under = ExtResource( 9 )
+texture_over = ExtResource( 8 )
+texture_progress = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="ProgressBar"]
+wait_time = 0.1
+autostart = true
+
+[connection signal="pressed" from="Control/pause" to="Control" method="_on_pause_pressed"]
+[connection signal="timeout" from="ProgressBar/Timer" to="." method="_on_Timer_timeout"]

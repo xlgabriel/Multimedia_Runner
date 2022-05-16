@@ -1,8 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/models/corridor.material" type="Material" id=1]
 [ext_resource path="res://assets/materials/parts.tres" type="Material" id=2]
 [ext_resource path="res://scripts/PART.gd" type="Script" id=3]
+[ext_resource path="res://scenes/CAMERA.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/MICROPHONE.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/HEADPHONE.tscn" type="PackedScene" id=6]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "lcurve"
@@ -57,3 +60,12 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -34, 0, -40 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36, 0, -40 )
 
 [node name="OBSTACLES" type="Spatial" parent="."]
+
+[node name="CAMERA_0" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.716626, -0.927327, -7.14244 )
+
+[node name="MICROPHONE_0" parent="." instance=ExtResource( 5 )]
+transform = Transform( 0.536703, 0, 0, 0, 0.536703, 0, 0, 0, 0.536703, -12.0547, -0.000164986, -31.0286 )
+
+[node name="HEADPHONE_0" parent="." instance=ExtResource( 6 )]
+transform = Transform( 0.0312677, 0, 0, 0, 0.0312677, 0, 0, 0, 0.147945, 0.320624, -0.542194, -25.2598 )

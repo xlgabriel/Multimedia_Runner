@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/models/Entity1.material" type="Material" id=1]
+[ext_resource path="res://assets/models/Entity2.material" type="Material" id=2]
+[ext_resource path="res://assets/models/Entity4.material" type="Material" id=3]
+[ext_resource path="res://assets/models/Micro.obj" type="ArrayMesh" id=4]
+
+[sub_resource type="BoxShape" id=1]
+
+[node name="MICROPHONE_0" type="StaticBody" groups=[
+"microphone",
+]]
+
+[node name="microphone" type="MeshInstance" parent="."]
+transform = Transform( 0.791672, 0, 0, 0, 0.791672, 0, 0, 0, 0.791672, 0, 0, 0 )
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 1 )
+material/1 = ExtResource( 1 )
+material/2 = ExtResource( 2 )
+material/3 = null
+material/4 = null
+material/5 = ExtResource( 3 )
+material/6 = null
+material/7 = ExtResource( 3 )
+material/8 = null
+material/9 = null
+material/10 = ExtResource( 3 )
+material/11 = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 4.9311, 0, 0, 0, 4.59968, 0, 0, 0, 5.50579, 0.121489, 3.98273, -1.39143 )
+shape = SubResource( 1 )

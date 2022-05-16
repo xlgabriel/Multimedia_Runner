@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://CanvasLayer.gd" type="Script" id=1]
+[ext_resource path="res://repo_images/black-background-leather-wallpaper-preview.jpg" type="Texture" id=2]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+pause_mode = 2
+script = ExtResource( 1 )
+
+[node name="background" type="TextureRect" parent="."]
+modulate = Color( 1, 1, 1, 0.607843 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="continue" type="Button" parent="."]
+margin_left = 388.494
+margin_top = 227.768
+margin_right = 625.494
+margin_bottom = 274.768
+text = "Continuar"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="exitmenu" type="Button" parent="."]
+margin_left = 386.74
+margin_top = 292.52
+margin_right = 627.74
+margin_bottom = 337.52
+text = "Volver al menú"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="exit" type="Button" parent="."]
+margin_left = 386.684
+margin_top = 356.994
+margin_right = 627.684
+margin_bottom = 401.994
+text = "Salir del juego"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="exitmenu" to="." method="_on_exitmenu_pressed"]
+[connection signal="pressed" from="exit" to="." method="_on_exit_pressed"]
