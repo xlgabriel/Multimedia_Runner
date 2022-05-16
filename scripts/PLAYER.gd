@@ -57,7 +57,7 @@ func _process(delta):
 		
 	# jump and slowly lerp the player back towards the ground
 	if Input.is_action_just_pressed("r_jump") and $ANCHOR/MESH.transform.origin.y < 1:
-		vertical_force = 3
+		vertical_force = 5
 	vertical_force = lerp(vertical_force, -3, 5.0 * delta)
 	
 	

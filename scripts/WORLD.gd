@@ -33,6 +33,8 @@ var paused: Object = null #Creamos una variable paused de tipo objeto que sea nu
 # It spawns and moves the parts around the player
 # given the pre-recorded and current lane-points
 # where the player is close to.
+var scores = [] setget set_scores
+const filepath = "user://scores"
 
 func _ready():
 	prepare_parts()
@@ -43,6 +45,7 @@ func _ready():
 	$Control/SPEEDBTN.connect("pressed", self, "on_speed")
 	Globals.connect("on_unload_part", self, "on_unload_part")
 	Globals.connect("on_coin_magnet_collision", self, "on_coin_magnet_collision")
+	load_scores()
 	
 	# spawn a few parts in the beginning
 	# the index makes sure no obstacles are spawned
@@ -87,6 +90,8 @@ func _process(delta):
 	if dead:
 		dead_timer -= delta
 		if dead_timer < 0.2:
+			scores.append(coins)
+			save_scores()
 			for part in $PARTS.get_children():
 				ObjectPooling.queue_free_instance(part)
 				MusicController.stop_music() #parar música
@@ -382,6 +387,8 @@ func on_collect(type):
 				
 			if computers && microphones && cameras && clapperboards && controllers && headphones == 3: #Cambié la condición de win a menos monedas y le añadí la escena de win
 				MusicController.stop_music() #parar música
+				scores.append(coins)
+				save_scores() 
 				#get_tree().change_scene_to(load("res://scr/scenes/WIN.tscn"))
 				get_tree().change_scene("res://scenes/WIN.tscn")  #Se hace con este código, el otro no funcionaba
 				#IMPORTANTE, HAY UN BUG AQUÍ, NO DEJA UNDIR DE NUEVO A JUGAR, CUANDO SE VA AL MENÚ LUEGO DE GANAR
@@ -407,6 +414,27 @@ func on_speed():
 	speed_time = 7.0  #Cuidado con aumentar mucho la velocidad del personaje, o se volvera casi que invulnerable porque la condición de arriba es que se muera si tiene 10 de velocidad
 	$Control/COINLEVEL.value = 0
 	$Control/SPEEDBTN.disabled = true
+
+
+func load_scores():
+	var file = File.new()
+	if not file.file_exists(filepath): return
+	file.open(filepath, File.READ)
+	scores = file.get_var()
+	file.close()
+	pass
+
+func save_scores():
+	var file = File.new()
+	file.open(filepath, File.WRITE)
+	file.store_var(scores)
+	file.close()
+	pass 
+
+func set_scores(new_value):
+	scores = new_value
+	save_scores()
+	pass
 
 
 	#if paused == null:

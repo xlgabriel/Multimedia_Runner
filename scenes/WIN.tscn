@@ -14,13 +14,13 @@
 [ext_resource path="res://scenes/MENU.gd" type="Script" id=12]
 [ext_resource path="res://scenes/INFORMACION.gd" type="Script" id=13]
 
-[sub_resource type="DynamicFontData" id=5]
+[sub_resource type="DynamicFontData" id=1]
 font_path = "res://fonts/full Pack 2025.ttf"
 
 [sub_resource type="DynamicFont" id=2]
 size = 100
 outline_color = Color( 0.219608, 0.203922, 0.203922, 1 )
-font_data = SubResource( 5 )
+font_data = SubResource( 1 )
 
 [sub_resource type="DynamicFontData" id=3]
 font_path = "res://fonts/Gogh-ExtraBold.otf"
@@ -170,6 +170,12 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Puntajes" type="Label" parent="."]
+margin_left = 381.885
+margin_top = 365.903
+margin_right = 631.885
+margin_bottom = 450.903
 
 [connection signal="pressed" from="INFORMACION" to="INFORMACION" method="_on_INFORMACION_pressed"]
 [connection signal="pressed" from="MENU" to="MENU" method="_on_MENU_pressed"]
