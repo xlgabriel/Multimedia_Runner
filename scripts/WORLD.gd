@@ -2,6 +2,8 @@ extends Spatial
 var computers = 0
 var microphones = 0
 var cameras = 0
+var headphones = 0
+var clapperboards = 0
 var controllers = 0
 var coins = 0
 var parts = {}
@@ -52,7 +54,8 @@ func _process(delta):
 	current_speed += delta * 0.2 #También cambié su velocidad inicial
 	distance += delta * current_speed * 0.1
 	$Control/COINS.text = "%s MONEDAS" % [int(coins)]
-	$Control/CAMERAS.text = "%s CAMARAS" % [int(cameras)]
+	$Control/HEADPHONES.text = "%s AUDIFONOS" % [int(headphones)]
+	$Control/CLAPPERBOARDS.text = "%s CLAQUETAS" % [int(clapperboards)]
 	$Control/MICROPHONES.text = "%s MICROFONOS" % [int(microphones)]
 	$Control/COMPUTERS.text = "%s COMPUTADORES" % [int(computers)]
 	$Control/CONTROLLERS.text = "%s CONTROLES" % [int(controllers)]
@@ -229,8 +232,12 @@ func initialize_part(part, part_instance, index):
 			# override behaviour for some pickups and obstacles
 			if obstacle.name.begins_with("CAMERA"):
 				object_instance = ObjectPooling.load_from_pool("res://scenes/CAMERA.tscn")
+			if obstacle.name.begins_with("HEADPHONES"):
+				object_instance = ObjectPooling.load_from_pool("res://scenes/HEADPHONES.tscn")
 			if obstacle.name.begins_with("MICROPHONE"):
 				object_instance = ObjectPooling.load_from_pool("res://scenes/MICROPHONE.tscn")
+			if obstacle.name.begins_with("CLAPPERBOARD"):
+				object_instance = ObjectPooling.load_from_pool("res://scenes/CLAPPERBOARD.tscn")
 			if obstacle.name.begins_with("CONTROLLER"):
 				object_instance = ObjectPooling.load_from_pool("res://scenes/COMPUTER.tscn")
 			if obstacle.name.begins_with("COMPUTER"):
@@ -312,13 +319,60 @@ func on_collect(type):
 			Globals.emit_signal("on_toggle_magnet", true)
 			magnet_time = 8.0
 		"camera":
-			cameras += 1
+			if cameras >=3:
+				cameras += 0
+				$ProgressBar.value +=0
+				$ProgressBar/TextureProgress.value +=0
+			else:
+				cameras += 1
+				$ProgressBar.value +=1
+				$ProgressBar/TextureProgress.value +=1
+		"headphone":
+			if headphones >=3:
+				headphones += 0
+				$ProgressBar.value +=0
+				$ProgressBar/TextureProgress.value +=0
+			else:
+				headphones += 1
+				$ProgressBar.value +=1
+				$ProgressBar/TextureProgress.value +=1
 		"microphone":
-			microphones += 1
+			if microphones >=3:
+				microphones += 0
+				$ProgressBar.value +=0
+				$ProgressBar/TextureProgress.value +=0
+			else:
+				microphones += 1
+				$ProgressBar.value +=1
+				$ProgressBar/TextureProgress.value +=1
 		"controller":
-			controllers += 1
+			if controllers >=3:
+				controllers += 0
+				$ProgressBar.value +=0
+				$ProgressBar/TextureProgress.value +=0
+			else:
+				controllers += 1
+				$ProgressBar.value +=1
+				$ProgressBar/TextureProgress.value +=1
 		"computer":
-			computers += 1
+			if computers >=3:
+				computers += 0
+				$ProgressBar.value +=0
+				$ProgressBar/TextureProgress.value +=0
+			else:
+				computers += 1
+				$ProgressBar.value +=1
+				$ProgressBar/TextureProgress.value +=1
+		"clapperboard":
+			if clapperboards >=3:
+				clapperboards += 0
+				$ProgressBar.value +=0
+				$ProgressBar/TextureProgress.value +=0
+			else:
+				clapperboards += 1
+				$ProgressBar.value +=1
+				$ProgressBar/TextureProgress.value +=1
+			
 
 		"coin":
 			coins += 1
@@ -326,12 +380,11 @@ func on_collect(type):
 			if $Control/COINLEVEL.value == 100.0:
 				$Control/SPEEDBTN.disabled = false
 				
-			if coins == 100: #Cambié la condición de win a menos monedas y le añadí la escena de win
+			if computers && microphones && cameras && clapperboards && controllers && headphones == 3: #Cambié la condición de win a menos monedas y le añadí la escena de win
 				MusicController.stop_music() #parar música
 				#get_tree().change_scene_to(load("res://scr/scenes/WIN.tscn"))
 				get_tree().change_scene("res://scenes/WIN.tscn")  #Se hace con este código, el otro no funcionaba
 				#IMPORTANTE, HAY UN BUG AQUÍ, NO DEJA UNDIR DE NUEVO A JUGAR, CUANDO SE VA AL MENÚ LUEGO DE GANAR
-
 func on_coin_magnet_collision(body):
 	magnet_coins.push_back(body)
 
@@ -359,3 +412,4 @@ func on_speed():
 	#if paused == null:
 		#paused = load(ScenePause).instance()
 		#$screem.add_child(paused)
+

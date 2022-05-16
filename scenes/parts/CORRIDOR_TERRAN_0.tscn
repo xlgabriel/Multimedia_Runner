@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/models/corridor.material" type="Material" id=1]
 [ext_resource path="res://assets/materials/parts.tres" type="Material" id=2]
 [ext_resource path="res://scripts/PART.gd" type="Script" id=3]
-[ext_resource path="res://CONTROL.tscn" type="PackedScene" id=4]
-[ext_resource path="res://COMPUTER.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/CONTROL.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/COMPUTER.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/CLAPPERBOARD.tscn" type="PackedScene" id=6]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "straight"
@@ -58,3 +59,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.31573, 0.300692, 31.6529 )
 
 [node name="COMPUTER_0" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.807888, 0.116926, 3.46647 )
+
+[node name="CLAPPERBOARD_0" parent="." instance=ExtResource( 6 )]
+transform = Transform( 0.392558, 0, 0, 0, 0.392558, 0, 0, 0, 1, 0.474496, -0.233007, -19.1046 )

@@ -8,7 +8,7 @@ func _ready():
 
 
 func _on_StartButton_pressed():
-	get_tree().change_scene("res://scenes/WORLD.tscn")
+	get_tree().change_scene("res://scenes/menuinstruccion.tscn")
 
 
 func _on_OptionsButton_pressed():

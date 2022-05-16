@@ -1,20 +1,34 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://repo_images/fondo-blanco-gris-brillante-lineas-onduladas_1017-25101.jpg" type="Texture" id=1]
-[ext_resource path="res://scripts/Button.gd" type="Script" id=2]
+[ext_resource path="res://repo_images/boton-de-informacion.png" type="Texture" id=2]
+[ext_resource path="res://repo_images/forma-de-microfono-negro.png" type="Texture" id=3]
+[ext_resource path="res://repo_images/claqueta-para-numerar-escenas-en-peliculas.png" type="Texture" id=4]
+[ext_resource path="res://repo_images/pantalla-de-computadora.png" type="Texture" id=5]
+[ext_resource path="res://repo_images/auriculares-redondeados.png" type="Texture" id=6]
+[ext_resource path="res://repo_images/home-button.png" type="Texture" id=7]
+[ext_resource path="res://repo_images/controlador-de-videojuegos.png" type="Texture" id=8]
+[ext_resource path="res://repo_images/camara-fotografica.png" type="Texture" id=9]
+[ext_resource path="res://repo_images/boton-de-informacion-hover.png" type="Texture" id=10]
+[ext_resource path="res://repo_images/001-home-button.png" type="Texture" id=11]
+[ext_resource path="res://scenes/MENU.gd" type="Script" id=12]
+[ext_resource path="res://scenes/INFORMACION.gd" type="Script" id=13]
 
-[sub_resource type="DynamicFontData" id=1]
+[sub_resource type="DynamicFontData" id=5]
 font_path = "res://fonts/full Pack 2025.ttf"
 
 [sub_resource type="DynamicFont" id=2]
 size = 100
 outline_color = Color( 0.219608, 0.203922, 0.203922, 1 )
-font_data = SubResource( 1 )
+font_data = SubResource( 5 )
 
-[sub_resource type="DynamicFont" id=3]
-size = 22
-outline_color = Color( 0.219608, 0.203922, 0.203922, 1 )
-font_data = SubResource( 1 )
+[sub_resource type="DynamicFontData" id=3]
+font_path = "res://fonts/Gogh-ExtraBold.otf"
+
+[sub_resource type="DynamicFont" id=4]
+size = 20
+outline_color = Color( 0.819608, 0.180392, 0.180392, 1 )
+font_data = SubResource( 3 )
 
 [node name="Control" type="Control"]
 modulate = Color( 0.756863, 0.74902, 0.74902, 1 )
@@ -32,10 +46,10 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="."]
 modulate = Color( 0.2, 0.192157, 0.192157, 1 )
-margin_left = 3.0
-margin_top = 102.0
-margin_right = 1026.0
-margin_bottom = 197.0
+margin_left = 4.25995
+margin_top = 62.615
+margin_right = 1027.26
+margin_bottom = 157.615
 custom_fonts/font = SubResource( 2 )
 text = "GANASTE!"
 align = 1
@@ -48,27 +62,10 @@ __meta__ = {
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 512.301, 300.345 )
+position = Vector2( 817.971, 231.728 )
 scale = Vector2( 0.510117, 0.521555 )
 texture = ExtResource( 1 )
-
-[node name="Label2" type="Label" parent="."]
-modulate = Color( 0.737255, 0.054902, 0.0392157, 1 )
-self_modulate = Color( 0.690196, 0.0745098, 0.0745098, 1 )
-light_mask = 5
-margin_left = 3.0
-margin_top = 233.728
-margin_right = 1024.0
-margin_bottom = 286.728
-custom_fonts/font = SubResource( 3 )
-custom_colors/font_color = Color( 0.839216, 0.0745098, 0.0745098, 1 )
-text = "MONEDAS: 100
-DISTANCIA: 150M"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+offset = Vector2( -596.6, 131.562 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_left = 0.491
@@ -84,14 +81,95 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="VBoxContainer"]
-margin_top = 45.0
-margin_right = 252.0
-margin_bottom = 65.0
-text = "volver al menú"
-script = ExtResource( 2 )
+[node name="pantalla-de-computadora" type="Sprite" parent="."]
+position = Vector2( 908.563, 263.719 )
+scale = Vector2( 0.159562, 0.159562 )
+texture = ExtResource( 5 )
+
+[node name="controlador-de-videojuegos" type="Sprite" parent="."]
+position = Vector2( 107.708, 263.307 )
+scale = Vector2( 0.159705, 0.162569 )
+texture = ExtResource( 8 )
+
+[node name="camara-fotografica" type="Sprite" parent="."]
+position = Vector2( 272.889, 262.8 )
+scale = Vector2( 0.134265, 0.140197 )
+texture = ExtResource( 9 )
+
+[node name="claqueta-para-numerar-escenas-en-peliculas" type="Sprite" parent="."]
+position = Vector2( 426.127, 264.067 )
+scale = Vector2( 0.157415, 0.135606 )
+texture = ExtResource( 4 )
+
+[node name="auriculares-redondeados" type="Sprite" parent="."]
+position = Vector2( 579.274, 262.978 )
+scale = Vector2( 0.160222, 0.166205 )
+texture = ExtResource( 6 )
+
+[node name="forma-de-microfono-negro" type="Sprite" parent="."]
+position = Vector2( 745.52, 261.481 )
+scale = Vector2( 0.175617, 0.153204 )
+texture = ExtResource( 3 )
+
+[node name="INFORMACION" type="TextureButton" parent="."]
+margin_left = 104.378
+margin_top = 486.683
+margin_right = 616.378
+margin_bottom = 998.683
+rect_scale = Vector2( 0.132055, 0.132055 )
+texture_normal = ExtResource( 2 )
+texture_hover = ExtResource( 10 )
+script = ExtResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="VBoxContainer/Button" to="VBoxContainer/Button" method="_on_Button_pressed"]
+[node name="MENU" type="TextureButton" parent="."]
+margin_left = 855.641
+margin_top = 481.953
+margin_right = 1367.64
+margin_bottom = 993.953
+rect_scale = Vector2( 0.145063, 0.145063 )
+texture_normal = ExtResource( 7 )
+texture_hover = ExtResource( 11 )
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+anchor_top = -0.00249718
+anchor_bottom = -0.00249718
+margin_left = 25.3674
+margin_top = 557.886
+margin_right = 260.367
+margin_bottom = 586.886
+rect_pivot_offset = Vector2( 179, 14 )
+custom_fonts/font = SubResource( 4 )
+text = "INFO COLECCIONABLES"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+anchor_top = -0.00249718
+anchor_bottom = -0.00249718
+margin_left = 806.178
+margin_top = 557.272
+margin_right = 985.178
+margin_bottom = 585.272
+rect_pivot_offset = Vector2( 179, 14 )
+custom_fonts/font = SubResource( 4 )
+text = "VOLVER AL MENÚ"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="INFORMACION" to="INFORMACION" method="_on_INFORMACION_pressed"]
+[connection signal="pressed" from="MENU" to="MENU" method="_on_MENU_pressed"]

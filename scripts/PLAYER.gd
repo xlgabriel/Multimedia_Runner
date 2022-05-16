@@ -57,7 +57,7 @@ func _process(delta):
 		
 	# jump and slowly lerp the player back towards the ground
 	if Input.is_action_just_pressed("r_jump") and $ANCHOR/MESH.transform.origin.y < 1:
-		vertical_force = 5
+		vertical_force = 3
 	vertical_force = lerp(vertical_force, -3, 5.0 * delta)
 	
 	
@@ -110,6 +110,12 @@ func on_collision(body):
 		ObjectPooling.queue_free_instance(body)
 	if body.is_in_group("microphone"):
 		Globals.emit_signal("on_collect", "microphone")
+		ObjectPooling.queue_free_instance(body)
+	if body.is_in_group("clapperboard"):
+		Globals.emit_signal("on_collect", "clapperboard")
+		ObjectPooling.queue_free_instance(body)
+	if body.is_in_group("headphone"):
+		Globals.emit_signal("on_collect", "headphone")
 		ObjectPooling.queue_free_instance(body)
 	if body.is_in_group("magnet"):
 		Globals.emit_signal("on_collect", "magnet")

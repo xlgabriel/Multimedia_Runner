@@ -1,11 +1,14 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scripts/WORLD.gd" type="Script" id=1]
 [ext_resource path="res://scenes/PLAYER.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/audio/magnetsound.wav" type="AudioStream" id=3]
 [ext_resource path="res://repo_images/pausa dos.png" type="Texture" id=4]
 [ext_resource path="res://repo_images/pausa (1).png" type="Texture" id=5]
+[ext_resource path="res://repo_images/barra 3.png" type="Texture" id=6]
 [ext_resource path="res://scenes/Control.gd" type="Script" id=7]
+[ext_resource path="res://repo_images/barra 2.png" type="Texture" id=8]
+[ext_resource path="res://repo_images/Barra 1.png" type="Texture" id=9]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 0.866667, 0, 1 )
@@ -144,4 +147,55 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="CLAPPERBOARDS" type="Label" parent="Control"]
+margin_left = 925.707
+margin_top = 139.0
+margin_right = 1016.71
+margin_bottom = 158.0
+rect_pivot_offset = Vector2( 75.2965, 9.5 )
+text = "2 CLAQUETAS"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HEADPHONES" type="Label" parent="Control"]
+margin_left = 920.191
+margin_top = 156.843
+margin_right = 1040.19
+margin_bottom = 175.843
+rect_pivot_offset = Vector2( 75.2965, 9.5 )
+text = "2 AUDIFONOS"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+margin_left = 330.376
+margin_top = 534.189
+margin_right = 708.376
+margin_bottom = 560.189
+max_value = 18.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureProgress" type="TextureProgress" parent="ProgressBar"]
+margin_left = -20.2296
+margin_top = -7.10391
+margin_right = 2679.77
+margin_bottom = 592.896
+rect_scale = Vector2( 0.151584, 0.0664081 )
+max_value = 18.0
+texture_under = ExtResource( 9 )
+texture_over = ExtResource( 8 )
+texture_progress = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="ProgressBar"]
+wait_time = 0.1
+autostart = true
+
 [connection signal="pressed" from="Control/pause" to="Control" method="_on_pause_pressed"]
+[connection signal="timeout" from="ProgressBar/Timer" to="." method="_on_Timer_timeout"]
