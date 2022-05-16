@@ -99,6 +99,18 @@ func on_collision(body):
 	if body.is_in_group("coin"):
 		Globals.emit_signal("on_collect", "coin")
 		ObjectPooling.queue_free_instance(body)
+	if body.is_in_group("camera"):
+		Globals.emit_signal("on_collect", "camera")
+		ObjectPooling.queue_free_instance(body)
+	if body.is_in_group("controller"):
+		Globals.emit_signal("on_collect", "controller")
+		ObjectPooling.queue_free_instance(body)
+	if body.is_in_group("computer"):
+		Globals.emit_signal("on_collect", "computer")
+		ObjectPooling.queue_free_instance(body)
+	if body.is_in_group("microphone"):
+		Globals.emit_signal("on_collect", "microphone")
+		ObjectPooling.queue_free_instance(body)
 	if body.is_in_group("magnet"):
 		Globals.emit_signal("on_collect", "magnet")
 		ObjectPooling.queue_free_instance(body)

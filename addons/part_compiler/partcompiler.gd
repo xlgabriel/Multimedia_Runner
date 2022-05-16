@@ -70,7 +70,9 @@ func on_compute_parts():
 				for item in layout.children:
 					var n = item.name.split('_')
 					var p = null
-					if item.name.begins_with("COIN"):
+					if item.name.begins_with("CAMERA"):
+						p = load("res://scenes/CAMERA.tscn").instance()
+					elif item.name.begins_with("COIN"):
 						p = load("res://scenes/COIN.tscn").instance()
 					elif item.name.begins_with("PICKUP"):
 						p = load("res://scenes/MAGNET.tscn").instance()

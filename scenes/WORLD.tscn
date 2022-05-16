@@ -37,6 +37,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="COMPUTERS" type="Label" parent="Control"]
+margin_left = 893.823
+margin_top = 101.73
+margin_right = 1013.82
+margin_bottom = 120.73
+rect_pivot_offset = Vector2( 75.2965, 9.5 )
+text = "2 COMPUTADORES"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="COINLEVEL" type="ProgressBar" parent="Control"]
 margin_left = 26.7397
 margin_top = 506.135
@@ -87,6 +98,28 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="CAMERAS" type="Label" parent="Control"]
+margin_left = 935.703
+margin_top = 67.1721
+margin_right = 1022.7
+margin_bottom = 86.1721
+rect_pivot_offset = Vector2( 75.2965, 9.5 )
+text = "2 CAMARAS"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CONTROLLERS" type="Label" parent="Control"]
+margin_left = 923.373
+margin_top = 84.0992
+margin_right = 1026.37
+margin_bottom = 103.099
+rect_pivot_offset = Vector2( 75.2965, 9.5 )
+text = "2 CONTROLES"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="pause" type="TextureButton" parent="Control"]
 pause_mode = 2
 margin_left = 78.0
@@ -96,6 +129,17 @@ margin_bottom = 68.0
 texture_normal = ExtResource( 5 )
 texture_hover = ExtResource( 4 )
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MICROPHONES" type="Label" parent="Control"]
+margin_left = 910.987
+margin_top = 120.835
+margin_right = 1013.99
+margin_bottom = 139.835
+rect_pivot_offset = Vector2( 75.2965, 9.5 )
+text = "2 MICROFONOS"
 __meta__ = {
 "_edit_use_anchors_": false
 }

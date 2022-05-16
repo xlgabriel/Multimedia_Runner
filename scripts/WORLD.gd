@@ -1,5 +1,8 @@
 extends Spatial
-
+var computers = 0
+var microphones = 0
+var cameras = 0
+var controllers = 0
 var coins = 0
 var parts = {}
 var dead = false
@@ -49,6 +52,10 @@ func _process(delta):
 	current_speed += delta * 0.2 #También cambié su velocidad inicial
 	distance += delta * current_speed * 0.1
 	$Control/COINS.text = "%s MONEDAS" % [int(coins)]
+	$Control/CAMERAS.text = "%s CAMARAS" % [int(cameras)]
+	$Control/MICROPHONES.text = "%s MICROFONOS" % [int(microphones)]
+	$Control/COMPUTERS.text = "%s COMPUTADORES" % [int(computers)]
+	$Control/CONTROLLERS.text = "%s CONTROLES" % [int(controllers)]
 	$Control/DISTANCE.text = "%s DISTANCIA" % [int(distance)]
 	$Control/SPEED.text = "%s VELOCIDAD" % [int(current_speed)]
 	
@@ -220,6 +227,14 @@ func initialize_part(part, part_instance, index):
 			randomize()
 			var object_instance = null
 			# override behaviour for some pickups and obstacles
+			if obstacle.name.begins_with("CAMERA"):
+				object_instance = ObjectPooling.load_from_pool("res://scenes/CAMERA.tscn")
+			if obstacle.name.begins_with("MICROPHONE"):
+				object_instance = ObjectPooling.load_from_pool("res://scenes/MICROPHONE.tscn")
+			if obstacle.name.begins_with("CONTROLLER"):
+				object_instance = ObjectPooling.load_from_pool("res://scenes/COMPUTER.tscn")
+			if obstacle.name.begins_with("COMPUTER"):
+				object_instance = ObjectPooling.load_from_pool("res://scenes/CONTROLLER.tscn")
 			if obstacle.name.begins_with("COIN"):
 				object_instance = ObjectPooling.load_from_pool("res://scenes/COIN.tscn")
 			elif pickups.find(obstacle.name.split('_')[0]) != -1:
@@ -232,6 +247,7 @@ func initialize_part(part, part_instance, index):
 			object_instance.transform.origin = Vector3(obstacle.x, obstacle.y, obstacle.z)
 			object_instance.rotation = Vector3(obstacle.rx, obstacle.ry, obstacle.rz)
 			object_instance.visible = true
+			
 			
 func prepare_parts():
 	# this method gets all scenes inside res://scenes/parts
@@ -295,6 +311,15 @@ func on_collect(type):
 			$AudioMagnet.play()
 			Globals.emit_signal("on_toggle_magnet", true)
 			magnet_time = 8.0
+		"camera":
+			cameras += 1
+		"microphone":
+			microphones += 1
+		"controller":
+			controllers += 1
+		"computer":
+			computers += 1
+
 		"coin":
 			coins += 1
 			$Control/COINLEVEL.value = min($Control/COINLEVEL.value + 2.0, 100.0)
@@ -329,8 +354,6 @@ func on_speed():
 	speed_time = 7.0  #Cuidado con aumentar mucho la velocidad del personaje, o se volvera casi que invulnerable porque la condición de arriba es que se muera si tiene 10 de velocidad
 	$Control/COINLEVEL.value = 0
 	$Control/SPEEDBTN.disabled = true
-
-
 
 
 	#if paused == null:
