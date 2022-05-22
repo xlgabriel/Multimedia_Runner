@@ -94,4 +94,52 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+<<<<<<< Updated upstream
 [connection signal="pressed" from="VBoxContainer/Button" to="VBoxContainer/Button" method="_on_Button_pressed"]
+=======
+[node name="Label2" type="Label" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+anchor_top = -0.00249718
+anchor_bottom = -0.00249718
+margin_left = 25.3674
+margin_top = 557.886
+margin_right = 260.367
+margin_bottom = 586.886
+rect_pivot_offset = Vector2( 179, 14 )
+custom_fonts/font = SubResource( 4 )
+text = "INFO COLECCIONABLES"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+anchor_top = -0.00249718
+anchor_bottom = -0.00249718
+margin_left = 806.178
+margin_top = 557.272
+margin_right = 985.178
+margin_bottom = 585.272
+rect_pivot_offset = Vector2( 179, 14 )
+custom_fonts/font = SubResource( 4 )
+text = "VOLVER AL MENÚ"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Puntajes" type="Label" parent="."]
+margin_left = 381.885
+margin_top = 365.903
+margin_right = 631.885
+margin_bottom = 450.903
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="INFORMACION" to="INFORMACION" method="_on_INFORMACION_pressed"]
+[connection signal="pressed" from="MENU" to="MENU" method="_on_MENU_pressed"]
+>>>>>>> Stashed changes

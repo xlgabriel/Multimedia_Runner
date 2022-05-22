@@ -8,6 +8,14 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+<<<<<<< Updated upstream
+=======
+	$INFORMACION.grab_focus()
+	load_scores()
+	var lastScore = scores.back()
+	var mostrar = "Puntaje Final: " + str(lastScore)
+	get_node("Puntajes").set_text(mostrar)
+>>>>>>> Stashed changes
 	pass # Replace with function body.
 
 
