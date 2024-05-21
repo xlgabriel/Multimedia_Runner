@@ -34,6 +34,10 @@ This project was carried out with the aim of offering an introduction to prospec
 
 - **Custom Controller Model**: This 3D model, created in Maya, represents the unconventional controller designed for the game. It includes the ESP32, sensors, and other components. You can view the 3D model [here](https://sketchfab.com/3d-models/modelofinal-4409b79b69544a67bf05d1f4e8fe461d).
 
+### Gameplay Video
+
+- **Gameplay Video**: Watch the gameplay video [here](https://youtu.be/-CWkF0OZkEc?si=XAjdWUsmHz3kKENU).
+
 ## 📦 Installation
 
 ### Prerequisites
